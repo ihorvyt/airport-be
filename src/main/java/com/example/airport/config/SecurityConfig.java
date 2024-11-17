@@ -12,11 +12,16 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .cors()
-                .and()
-                .authorizeHttpRequests(auth -> auth
-                        .anyRequest().permitAll());
+        http
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**",
+                                "/v3/api-docs.yaml",
+                                "/api-docs/**").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .csrf(csrf -> csrf.disable());
         return http.build();
     }
 
