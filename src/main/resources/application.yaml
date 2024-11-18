@@ -4,15 +4,15 @@ spring:
   security:
     enabled: false
   datasource:
-    url: jdbc:mysql://localhost:3306/airport_db
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate.dialect: org.hibernate.dialect.H2Dialect
   springdoc:
     swagger-ui:
       path: /swagger-ui.html
